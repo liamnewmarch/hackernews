@@ -2,8 +2,8 @@
 	box-sizing: border-box;
 }
 
-html {
-	font-family: sans-serif;
+html, input {
+	font: normal 16px sans-serif;
 	text-rendering: optimizeLegibility;
 }
 
@@ -21,6 +21,12 @@ header {
 input {
 	display: block;
 	width: 100%;
+	margin-bottom: 1.5em;
+	padding: 0.25em;
+}
+
+input:focus {
+	outline: none;
 }
 
 main {
