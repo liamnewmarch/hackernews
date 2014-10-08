@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" ng-app="app">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+        <title>Hacker News. Hacked.</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <header>
+            <h1><a ng-href="/">Hacker News. Hacked.</a></h1>
+        </header>
+        <main ng-controller="TopStoriesCtrl">
+            <input type="seach" ng-model="quickSearch">
+            <div class="story" ng-repeat="story in stories | filter:quickSearch">
+                <span class="story__title">
+                    <a href="{{ story.url }}">{{ story.title }}</a>
+                </span>
+                <span class="story__meta">
+                    {{ story.score }} points by
+                    <a ng-href="https://news.ycombinator.com/user?id={{ story.by }}">{{ story.by }}</a>
+                    {{ story.date | date:"yyyy-MM-dd HH:mm" }} |
+                    <a ng-href="https://news.ycombinator.com/item?id={{ story.id }}" ng-pluralize count="story.kids.length" when="{ '0': 'No comments.', '1': '1 comment.', 'other': '{} comments.' }"></a>
+                </span>
+            </div>
+        </main>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular-route.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular-resource.js"></script>
+        <script src="main.js"></script>
+    </body>
+</html>

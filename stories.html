@@ -1,0 +1,15 @@
+<div class="story" ng-repeat="story in stories">
+    <span class="story__counter">
+        {{ $index + 1 }}.
+    </span>
+    <span class="story__title">
+        <a href="{{ story.url }}">{{ story.title }}</a>
+    </span>
+    <span class="story__meta">
+        {{ story.score }} points by
+        <a ng-href="https://news.ycombinator.com/user?id={{ story.by }}">{{ story.by }}</a>
+        {{ story.date | date:"yyyy-MM-dd HH:mm" }} |
+        <a ng-href="https://news.ycombinator.com/item?id={{ story.id }}" ng-pluralize count="story.kids.length" when="{ '0': 'No comments.', '1': '1 comment.', 'other': '{} comments.' }">
+        </a>
+    </span>
+</div>
