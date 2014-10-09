@@ -2,6 +2,10 @@
 	box-sizing: border-box;
 }
 
+[ng-cloak] {
+	display: none;
+}
+
 html, input {
 	font: normal 16px sans-serif;
 	text-rendering: optimizeLegibility;
