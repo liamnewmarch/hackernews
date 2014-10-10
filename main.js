@@ -2,31 +2,28 @@
 
     'use strict';
 
-    var App = angular.module('app', ['ngRoute', 'ngResource']);
+    var App = angular.module('app', ['ngRoute', 'firebase']);
 
-    App.factory('url', function() {
-        var base = 'https://hacker-news.firebaseio.com/v0/',
-            format = '.json';
+    App.controller('TopStoriesCtrl', function($scope, $firebase) {
 
-        return {
-            top: base + 'topstories' + format,
-            story: base + 'item/:id' + format
-        };
-    });
+        var baseUrl = 'https://hacker-news.firebaseio.com/v0/';
+        var topReference = new Firebase(baseUrl + 'topstories');
 
-    App.controller('TopStoriesCtrl', function($scope, $resource, url) {
-
-        var Top = $resource(url.top, null, { get: { isArray: true }});
-        var Story = $resource(url.story, { id: '@id' });
-
-        $scope.title = 'Top';
         $scope.stories = [];
 
-        Top.get(function(stories) {
-            angular.forEach(stories, function(id) {
-                Story.get({ id: id }, function(story) {
+        topReference.on('value', function(topSnapshot) {
+
+            var top = topSnapshot.val();
+            angular.forEach(top, function(id) {
+
+                var storyReference = new Firebase(baseUrl + 'item/' + id);
+                storyReference.on('value', function(storySnapshot) {
+
+                    var story = storySnapshot.val();
                     story.date = new Date(story.time * 1000);
+
                     $scope.stories.push(story);
+                    $scope.$apply();
                 });
             });
         });
