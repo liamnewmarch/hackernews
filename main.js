@@ -2,7 +2,7 @@
 
     'use strict';
 
-    var App = angular.module('app', ['ngRoute', 'firebase']);
+    var App = angular.module('app', ['firebase']);
 
     App.controller('TopStoriesCtrl', function($scope, $firebase) {
 
