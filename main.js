@@ -4,30 +4,44 @@
 
     var App = angular.module('app', ['firebase']);
 
-    App.controller('TopStoriesCtrl', function($scope, $firebase) {
+    App.controller('TopStoriesCtrl', function($scope, $firebase, $q) {
 
-        var baseUrl = 'https://hacker-news.firebaseio.com/v0/';
-        var topReference = new Firebase(baseUrl + 'topstories');
+        var topListener,
+            baseUrl = 'https://hacker-news.firebaseio.com/v0/',
+            topReference = new Firebase(baseUrl + 'topstories');
 
         $scope.stories = [];
 
-        var listener = topReference.on('value', function(topSnapshot) {
+        topListener = topReference.on('value', function(topSnapshot) {
 
-            var top = topSnapshot.val();
+            var promises = [],
+                top = topSnapshot.val();
+
             angular.forEach(top, function(id) {
 
-                var storyReference = new Firebase(baseUrl + 'item/' + id);
-                storyReference.on('value', function(storySnapshot) {
+                promises.push($q(function(resolve) {
+                    var storyListener,
+                        storyReference = new Firebase(baseUrl + 'item/' + id);
 
-                    var story = storySnapshot.val();
-                    story.date = new Date(story.time * 1000);
+                    storyListener = storyReference.on('value', function(storySnapshot) {
 
-                    $scope.stories.push(story);
-                    $scope.$apply();
-                });
+                        var story = storySnapshot.val();
+
+                        story.date = new Date(story.time * 1000);
+                        $scope.stories.push(story);
+                        $scope.$apply();
+
+                        storyReference.off('value', storyListener);
+                        resolve();
+                    });
+                }));
             });
 
-            topReference.off('value', listener);
+            $q.all(promises).then(function() {
+                Firebase.goOffline();
+            });
+
+            topReference.off('value', topListener);
         });
     });
 
