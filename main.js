@@ -11,7 +11,7 @@
 
         $scope.stories = [];
 
-        topReference.on('value', function(topSnapshot) {
+        var listener = topReference.on('value', function(topSnapshot) {
 
             var top = topSnapshot.val();
             angular.forEach(top, function(id) {
@@ -26,6 +26,8 @@
                     $scope.$apply();
                 });
             });
+
+            topReference.off('value', listener);
         });
     });
 
