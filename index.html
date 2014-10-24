@@ -11,7 +11,7 @@
             <h1><a ng-href="/">Hacker News. Hacked.</a></h1>
         </header>
         <main ng-cloak ng-controller="TopStoriesCtrl">
-            <input type="seach" ng-model="quickSearch">
+            <input type="seach" ng-model="quickSearch" placeholder="Filter" autofocus>
             <div class="story" ng-repeat="story in stories | filter:quickSearch">
                 <span class="story__title">
                     <a href="{{ story.url }}">{{ story.title }}</a>
