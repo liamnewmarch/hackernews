@@ -2,15 +2,19 @@
 
     'use strict';
 
+    var url = {
+        base: 'https://news.ycombinator.com/',
+        api: 'https://hacker-news.firebaseio.com/v0/'
+    };
+
     var App = angular.module('app', ['firebase']);
 
     App.controller('TopStoriesCtrl', function($scope, $firebase, $q) {
 
-        var topListener,
-            baseUrl = 'https://hacker-news.firebaseio.com/v0/',
-            topReference = new Firebase(baseUrl + 'topstories');
+        var topListener, topReference;
 
         $scope.stories = [];
+        topReference = new Firebase(url.api + 'topstories');
 
         topListener = topReference.on('value', function(topSnapshot) {
 
@@ -20,8 +24,9 @@
             angular.forEach(top, function(id) {
 
                 promises.push($q(function(resolve) {
+
                     var storyListener,
-                        storyReference = new Firebase(baseUrl + 'item/' + id);
+                        storyReference = new Firebase(url.api + 'item/' + id);
 
                     storyListener = storyReference.on('value', function(storySnapshot) {
 
@@ -30,6 +35,10 @@
                         story.date = new Date(story.time * 1000);
                         $scope.stories.push(story);
                         $scope.$apply();
+
+                        if (story.text) {
+                            story.url = url.base + 'item?id=' + story.id;
+                        }
 
                         storyReference.off('value', storyListener);
                         resolve();
