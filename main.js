@@ -30,7 +30,7 @@
 
         // View an item on HN
         this.view = function(id) {
-            return baseHN + 'item?id=$1';
+            return baseHN + 'item?id=' + id;
         };
 
         // Cast a vote on HN (requires login)
