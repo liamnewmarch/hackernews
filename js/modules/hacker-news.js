@@ -1,1 +1,1 @@
-var HackerNews = angular.module('app', ['firebase']);
+var HackerNews = angular.module('app', []);

@@ -5,7 +5,7 @@
  *
  */
 
-HackerNews.service('HackerNewsAPI', function($firebase, $q) {
+HackerNews.service('HackerNewsAPI', function($q) {
 
     // Request a specific url and return a promise
     this.fetch = function(url) {
