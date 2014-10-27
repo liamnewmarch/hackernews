@@ -5,7 +5,7 @@
  * wrapped up in promises.
  */
 
- angular.module('app').service('TopStories', function($q, HackerNewsAPI, URLProvider) {
+HackerNews.service('TopStories', function($q, HackerNewsAPI, URLProvider) {
 
     // Fetch the top stories and triggers fetchStory for each one
     function fetchTop(onStory, onDone) {

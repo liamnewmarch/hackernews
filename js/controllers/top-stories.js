@@ -5,7 +5,8 @@
  * connection when we have them all.
  *
  */
-angular.module('app').controller('TopStoriesCtrl', function($scope, TopStories) {
+
+HackerNews.controller('TopStoriesCtrl', function($scope, TopStories) {
 
     // Holds the top stories
     $scope.stories = [];

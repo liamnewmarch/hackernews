@@ -4,7 +4,8 @@
  * Handles connection and requests to the API.
  *
  */
- angular.module('app', ['firebase']).service('HackerNewsAPI', function($firebase, $q) {
+
+HackerNews.service('HackerNewsAPI', function($firebase, $q) {
 
     // Request a specific url and return a promise
     this.fetch = function(url) {

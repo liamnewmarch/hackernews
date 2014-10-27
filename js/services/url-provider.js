@@ -4,7 +4,7 @@
  * Provides URLs for the API, and other end points.
  */
 
- angular.module('app').service('URLProvider', function() {
+HackerNews.service('URLProvider', function() {
 
     // Base URLs
     var baseAPI = 'https://hacker-news.firebaseio.com/v0/',
