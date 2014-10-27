@@ -5,11 +5,11 @@
  * wrapped up in promises.
  */
 
-HackerNews.service('TopStories', function($q, HackerNewsAPI, URLProvider) {
+HackerNews.service('TopStories', function($q, APIWrapper, URLProvider) {
 
     // Fetch the top stories and triggers fetchStory for each one
     function fetchTop(onStory, onDone) {
-        HackerNewsAPI.fetch(URLProvider.top()).then(function(snapshot) {
+        APIWrapper.fetch(URLProvider.top()).then(function(snapshot) {
             var promises = [];
 
             angular.forEach(snapshot.val(), function(id) {
@@ -26,7 +26,7 @@ HackerNews.service('TopStories', function($q, HackerNewsAPI, URLProvider) {
 
     // Fetch the story item for a given ID
     function fetchStory(id, onStory) {
-        HackerNewsAPI.fetch(URLProvider.item(id)).then(function(snapshot) {
+        APIWrapper.fetch(URLProvider.item(id)).then(function(snapshot) {
             var story = snapshot.val();
 
             // JS expects miliseconds but the API provides seconds
@@ -52,6 +52,6 @@ HackerNews.service('TopStories', function($q, HackerNewsAPI, URLProvider) {
 
     // Provides a controller hook to close the connection
     this.disconnect = function() {
-        HackerNewsAPI.disconnect();
+        APIWrapper.disconnect();
     };
 });
