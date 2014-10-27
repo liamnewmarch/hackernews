@@ -1,0 +1,6 @@
+{
+    "default": [
+        "sass:build",
+        "uglify:build"
+    ]
+}

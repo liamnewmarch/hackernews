@@ -1,0 +1,7 @@
+{
+    "build": {
+        "files": {
+            "css/main.css": "css/main.scss"
+        }
+    }
+}

@@ -1,0 +1,17 @@
+{
+    "build": {
+        "options": {
+            "mangle": false,
+			"sourceMap": true
+        },
+        "files": {
+            "js/app.min.js": [
+                "js/services/url-provider.js",
+                "js/services/hacker-news-api.js",
+                "js/services/top-stories.js",
+                "js/controllers/top-stories.js",
+                "js/filters/top-stories.js"
+            ]
+        }
+    }
+}
