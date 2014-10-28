@@ -16,7 +16,7 @@ module.exports = {
             'port': 9876,
             'colors': true,
             'autoWatch': true,
-            'browsers': [ 'Chrome' ],
+            'browsers': [ 'PhantomJS' ],
             'singleRun': true
         }
     }
