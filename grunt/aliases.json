@@ -1,7 +1,0 @@
-{
-    "default": [
-        "sass:build",
-        "uglify:build",
-        "karma:test"
-    ]
-}
