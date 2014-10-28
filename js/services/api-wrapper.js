@@ -5,7 +5,7 @@
  *
  */
 
-HackerNews.service('APIWrapper', function($q) {
+HackerNews.service('APIWrapper', function($window, $q) {
 
     // Request a specific url and return a promise
     this.fetch = function(url) {
@@ -13,7 +13,7 @@ HackerNews.service('APIWrapper', function($q) {
 
         return $q(function(resolve) {
 
-            connection = new Firebase(url);
+            connection = new $window.Firebase(url);
             onValue = connection.on('value', function(snapshot) {
                 resolve(snapshot);
                 connection.off('value', onValue);
@@ -23,6 +23,6 @@ HackerNews.service('APIWrapper', function($q) {
 
     // Close the API connection
     this.disconnect = function() {
-        Firebase.goOffline();
+        $window.Firebase.goOffline();
     };
 });
