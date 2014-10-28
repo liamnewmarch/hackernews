@@ -1,10 +1,10 @@
-describe('TopStoriesCtrl', function() {
+describe('General', function() {
 
     beforeEach(module('app'));
 
     it('should create stories', inject(function($controller) {
 
-		var scope = {};
+        var scope = {};
 
         $controller('TopStoriesCtrl', {
             $scope: scope
