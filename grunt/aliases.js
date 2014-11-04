@@ -1,7 +1,11 @@
 module.exports = {
     default: [
-        "sass",
-        "uglify",
-        "karma"
+        'sass',
+        'uglify',
+        'karma'
+    ],
+    build: [
+        'sass',
+        'uglify'
     ]
 };

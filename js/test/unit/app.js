@@ -1,59 +1,91 @@
 describe('URLProvider', function() {
 
-    beforeEach(module('app'));
+    var urlProvider;
 
-    it('should return top url', inject(function(URLProvider) {
+    beforeEach(function() {
+
+        module('app');
+
+        inject(function(URLProvider) {
+            urlProvider = URLProvider;
+        });
+    });
+
+    it('should return top url', function() {
 
         var expected = 'https://hacker-news.firebaseio.com/v0/topstories',
-            returned = URLProvider.top();
+            returned = urlProvider.top();
 
         expect(returned).toEqual(expected);
 
-    }));
+    });
 
-    it('should return item url', inject(function(URLProvider) {
+    it('should return item url', function() {
 
         var expected = 'https://hacker-news.firebaseio.com/v0/item/123456',
-            returned = URLProvider.item(123456);
+            returned = urlProvider.item(123456);
 
         expect(returned).toEqual(expected);
 
-    }));
+    });
 
-    it('should return view url', inject(function(URLProvider) {
+    it('should return view url', function() {
 
         var expected = 'https://news.ycombinator.com/item?id=123456',
-            returned = URLProvider.view(123456);
+            returned = urlProvider.view(123456);
 
         expect(returned).toEqual(expected);
 
-    }));
+    });
 
-    it('should return vote url', inject(function(URLProvider) {
+    it('should return vote url', function() {
 
         var expected = 'https://news.ycombinator.com/vote?for=123456&dir=up&whence=news',
-            returned = URLProvider.vote(123456);
+            returned = urlProvider.vote(123456);
 
         expect(returned).toEqual(expected);
 
-    }));
+    });
 
 });
 
 describe('TopStoriesCtrl', function() {
 
-    beforeEach(module('app'));
+    var $scope = {};
 
-    it('should create stories array', inject(function($controller) {
+    beforeEach(function() {
+        module('app');
 
-        var scope = {};
-
-        $controller('TopStoriesCtrl', {
-            $scope: scope
+        inject(function($rootScope) {
+            $scope = $rootScope.$new();
         });
 
-        expect(scope.stories.length).toBe(0);
+        inject(function($controller) {
+            $controller('TopStoriesCtrl', {
+                $scope: $scope
+            });
+        });
+    });
 
-    }));
+    it('should create stories array', function() {
+        expect(Array.isArray($scope.stories)).toBe(true);
+    });
 
+    it('should display loading status', function() {
+        expect($scope.status).toBe('Loading');
+    });
+
+    it('should fetch top stories', function(done) {
+
+        function check() {
+            $scope.$digest();
+            if ($scope.stories.length > 0) {
+                done();
+            } else {
+                setTimeout(check, 500);
+            }
+        }
+
+        check();
+    });
 });
