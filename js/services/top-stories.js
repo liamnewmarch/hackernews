@@ -8,20 +8,20 @@
 HackerNews.service('TopStories', function($q, APIWrapper, URLProvider) {
 
     // Fetch the top stories and triggers fetchStory for each one
-    function fetchTop(onStory, onDone) {
+    function fetchTop(onStory, onDone, onError) {
         APIWrapper.fetch(URLProvider.top()).then(function(snapshot) {
             var promises = [];
 
             angular.forEach(snapshot.val(), function(id) {
-                var promise = $q(function(resolve) {
+                var promise = $q(function(resolve, reject) {
                     fetchStory(id, resolve);
                 });
                 promise.then(onStory);
                 promises.push(promise);
             });
 
-            $q.all(promises).then(onDone);
-        });
+            $q.all(promises).then(onDone).catch(onError);
+        }).catch(onError);
     }
 
     // Fetch the story item for a given ID
@@ -43,10 +43,10 @@ HackerNews.service('TopStories', function($q, APIWrapper, URLProvider) {
 
     // Provides a controller hook to listen for individual story loads
     this.each = function(onStory) {
-        return $q(function(resolve) {
+        return $q(function(resolve, reject) {
             fetchTop(function(story) {
                 onStory(story);
-            }, resolve);
+            }, resolve, reject);
         });
     };
 

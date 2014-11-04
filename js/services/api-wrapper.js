@@ -11,13 +11,13 @@ HackerNews.service('APIWrapper', function($window, $q) {
     this.fetch = function(url) {
         var connection, onValue;
 
-        return $q(function(resolve) {
+        return $q(function(resolve, reject) {
 
             connection = new $window.Firebase(url);
             onValue = connection.on('value', function(snapshot) {
                 resolve(snapshot);
                 connection.off('value', onValue);
-            });
+            }, reject);
         });
     };
 

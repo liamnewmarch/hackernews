@@ -8,6 +8,8 @@
 
 HackerNews.controller('TopStoriesCtrl', function($scope, TopStories) {
 
+    $scope.status = 'Loading';
+
     // Holds the top stories
     $scope.stories = [];
 
@@ -16,5 +18,8 @@ HackerNews.controller('TopStoriesCtrl', function($scope, TopStories) {
         $scope.stories.push(story);
     }).then(function() {
         TopStories.disconnect();
+    }).catch(function() {
+        $scope.status = 'Error loading stories';
+        console.log('The API returned an error');
     });
 });
