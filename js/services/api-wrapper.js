@@ -5,24 +5,34 @@
  *
  */
 
-HackerNews.service('APIWrapper', function($window, $q) {
+(function() {
 
-    // Request a specific url and return a promise
-    this.fetch = function(url) {
-        var connection, onValue;
+    'use strict';
 
-        return $q(function(resolve, reject) {
+    function APIWrapper($window, $q) {
 
-            connection = new $window.Firebase(url);
-            onValue = connection.on('value', function(snapshot) {
-                resolve(snapshot);
-                connection.off('value', onValue);
-            }, reject);
-        });
-    };
+        // Request a specific url and return a promise
+        this.fetch = function(url) {
+            var connection, onValue;
 
-    // Close the API connection
-    this.disconnect = function() {
-        $window.Firebase.goOffline();
-    };
-});
+            return $q(function(resolve, reject) {
+
+                connection = new $window.Firebase(url);
+                onValue = connection.on('value', function(snapshot) {
+                    resolve(snapshot);
+                    connection.off('value', onValue);
+                }, reject);
+            });
+        };
+
+        // Close the API connection
+        this.disconnect = function() {
+            $window.Firebase.goOffline();
+        };
+    }
+
+    APIWrapper.$inject = [ '$window', '$q' ];
+
+    angular.module('app').service('APIWrapper', APIWrapper);
+
+}());

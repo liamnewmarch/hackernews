@@ -6,20 +6,30 @@
  *
  */
 
-HackerNews.controller('TopStoriesCtrl', function($scope, TopStories) {
+(function() {
 
-    $scope.status = 'Loading';
+    'use strict';
 
-    // Holds the top stories
-    $scope.stories = [];
+    function TopStoriesCtrl($scope, TopStories) {
 
-    // Fetch top stories
-    TopStories.each(function(story) {
-        $scope.stories.push(story);
-    }).then(function() {
-        TopStories.disconnect();
-    }).catch(function() {
-        $scope.status = 'Error loading stories';
-        console.log('The API returned an error');
-    });
-});
+        $scope.status = 'Loading';
+
+        // Holds the top stories
+        $scope.stories = [];
+
+        // Fetch top stories
+        TopStories.each(function(story) {
+            $scope.stories.push(story);
+        }).then(function() {
+            TopStories.disconnect();
+        }).catch(function() {
+            $scope.status = 'Error loading stories';
+            console.log('The API returned an error');
+        });
+    }
+
+    TopStoriesCtrl.$inject = [ '$scope', 'TopStories' ];
+
+    angular.module('app').controller('TopStoriesCtrl', TopStoriesCtrl);
+
+}());
