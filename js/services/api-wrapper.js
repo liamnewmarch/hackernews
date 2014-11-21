@@ -6,8 +6,11 @@
  */
 
 (function() {
-
     'use strict';
+
+    angular.module('app').service('APIWrapper', APIWrapper);
+
+    APIWrapper.$inject = [ '$window', '$q' ];
 
     function APIWrapper($window, $q) {
 
@@ -30,9 +33,5 @@
             $window.Firebase.goOffline();
         };
     }
-
-    APIWrapper.$inject = [ '$window', '$q' ];
-
-    angular.module('app').service('APIWrapper', APIWrapper);
 
 }());

@@ -6,8 +6,9 @@
  */
 
 (function() {
-
     'use strict';
+
+    angular.module('app').filter('domain', domain);
 
     function domain() {
         return function(url) {
@@ -16,7 +17,5 @@
             return a.hostname;
         };
     }
-
-    angular.module('app').filter('domain', domain);
 
 }());

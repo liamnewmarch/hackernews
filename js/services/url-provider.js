@@ -5,8 +5,9 @@
  */
 
 (function() {
-
     'use strict';
+
+    angular.module('app').service('URLProvider', URLProvider);
 
     function URLProvider() {
 
@@ -34,7 +35,5 @@
             return baseHN + 'vote?for=' + id + '&dir=up&whence=news';
         };
     }
-
-    angular.module('app').service('URLProvider', URLProvider);
 
 }());

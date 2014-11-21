@@ -7,7 +7,7 @@ module.exports = {
         },
         files: {
             'js/app.min.js': [
-                'js/modules/hacker-news.js',
+                'js/modules/app.js',
                 'js/services/url-provider.js',
                 'js/services/api-wrapper.js',
                 'js/services/top-stories.js',

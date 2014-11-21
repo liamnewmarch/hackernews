@@ -6,8 +6,15 @@
  */
 
 (function() {
-
     'use strict';
+
+    angular.module('app').service('TopStories', TopStories);
+
+    TopStories.$inject = [
+        '$q',
+        'APIWrapper',
+        'URLProvider'
+    ];
 
     function TopStories($q, APIWrapper, URLProvider) {
 
@@ -59,13 +66,5 @@
             APIWrapper.disconnect();
         };
     }
-
-    TopStories.$inject = [
-        '$q',
-        'APIWrapper',
-        'URLProvider'
-    ];
-
-    angular.module('app').service('TopStories', TopStories);
 
 }());

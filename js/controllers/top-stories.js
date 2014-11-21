@@ -7,8 +7,11 @@
  */
 
 (function() {
-
     'use strict';
+
+    angular.module('app').controller('TopStoriesCtrl', TopStoriesCtrl);
+
+    TopStoriesCtrl.$inject = [ '$scope', 'TopStories' ];
 
     function TopStoriesCtrl($scope, TopStories) {
 
@@ -27,9 +30,5 @@
             console.log('The API returned an error');
         });
     }
-
-    TopStoriesCtrl.$inject = [ '$scope', 'TopStories' ];
-
-    angular.module('app').controller('TopStoriesCtrl', TopStoriesCtrl);
 
 }());
