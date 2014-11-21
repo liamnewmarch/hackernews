@@ -21,7 +21,8 @@
                     {{ story.score }} points by
                     <a ng-href="https://news.ycombinator.com/user?id={{ story.by }}">{{ story.by }}</a>
                     {{ story.date | date:"yyyy-MM-dd HH:mm" }} |
-                    <a ng-href="https://news.ycombinator.com/item?id={{ story.id }}" ng-pluralize count="story.kids.length" when="{ '0': 'No comments.', '1': '1 comment.', 'other': '{} comments.' }"></a>
+                    <a ng-href="https://news.ycombinator.com/item?id={{ story.id }}" ng-show="story.kids" ng-pluralize count="story.kids.length" when="{ '1': '1 comment.', 'other': '{} comments.' }"></a>
+                    <a ng-href="https://news.ycombinator.com/item?id={{ story.id }}" ng-hide="story.kids">No comments.</a>
                 </span>
             </div>
             <div class="story" ng-hide="stories.length">
