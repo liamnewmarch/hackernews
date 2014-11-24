@@ -31,7 +31,7 @@
 
         $scope.keyHandler = KeyHandler.on({
             13: function() { // return
-                if ($scope.index in $scope.stories) {
+                if ($scope.index in $scope.filtered) {
                     $window.location.href = $scope.filtered[$scope.index].url;
                 }
             },
@@ -40,6 +40,15 @@
             },
             40: function() { // down
                 $scope.index = Math.min($scope.filtered.length - 1, $scope.index + 1);
+            }
+        });
+
+        $scope.$watch('index', function() {
+            var selector, element;
+            if ($scope.index in $scope.filtered) {
+                selector = '.story:nth-of-type(' + ($scope.index + 1) + ')';
+                element = $window.document.querySelector(selector);
+                $window.scrollTo(0, element.offsetTop - ($window.innerHeight / 2));
             }
         });
     }
