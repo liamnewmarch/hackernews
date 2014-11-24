@@ -31,13 +31,15 @@
 
         $scope.keyHandler = KeyHandler.on({
             13: function() { // return
-                $window.location.href = $scope.stories[$scope.index].url;
+                if ($scope.index in $scope.stories) {
+                    $window.location.href = $scope.stories[$scope.index].url;
+                }
             },
             38: function() { // up
                 $scope.index = Math.max(0, $scope.index - 1);
             },
             40: function() { // down
-                $scope.index = Math.min($scope.stories.length, $scope.index + 1);
+                $scope.index = Math.min($scope.stories.length - 1, $scope.index + 1);
             }
         });
     }
