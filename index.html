@@ -13,7 +13,7 @@
         </header>
         <main>
             <input type="seach" ng-model="quickSearch" placeholder="Filter" autofocus>
-            <div class="story" ng-repeat="story in stories | filter:quickSearch" ng-class="{ 'story--selected': $index == index }">
+            <div class="story" ng-repeat="story in filtered = (stories | filter: quickSearch)" ng-class="{ 'story--selected': $index == index }">
                 <span class="story__title">
                     <a ng-href="{{ story.url }}">{{ story.title }}</a>
                     <span>({{ story.url | domain }})</span>
