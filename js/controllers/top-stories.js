@@ -31,7 +31,7 @@
 
         $scope.keyHandler = KeyHandler.on({
             13: function() { // return
-                if ($scope.index in $scope.filtered) {
+                if ($scope.index >= 0) {
                     $window.location.href = $scope.filtered[$scope.index].url;
                 }
             },
@@ -45,7 +45,7 @@
 
         $scope.$watch('index', function() {
             var selector, element;
-            if ($scope.index in $scope.filtered) {
+            if ($scope.index >= 0) {
                 selector = '.story:nth-of-type(' + ($scope.index + 1) + ')';
                 element = $window.document.querySelector(selector);
                 $window.scrollTo(0, element.offsetTop - ($window.innerHeight / 2));
