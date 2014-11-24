@@ -10,7 +10,9 @@
 
     'use strict';
 
-    function TopStoriesCtrl($scope, TopStories) {
+    function TopStoriesCtrl($scope, $window, TopStories, KeyHandler) {
+
+        $scope.index = -1;
 
         $scope.status = 'Loading';
 
@@ -26,9 +28,21 @@
             $scope.status = 'Error loading stories';
             console.log('The API returned an error');
         });
+
+        $scope.keyHandler = KeyHandler.on({
+            13: function() { // return
+                $window.location.href = $scope.stories[$scope.index].url;
+            },
+            38: function() { // up
+                $scope.index = Math.max(0, $scope.index - 1);
+            },
+            40: function() { // down
+                $scope.index = Math.min($scope.stories.length, $scope.index + 1);
+            }
+        });
     }
 
-    TopStoriesCtrl.$inject = [ '$scope', 'TopStories' ];
+    TopStoriesCtrl.$inject = [ '$scope', '$window', 'TopStories', 'KeyHandler' ];
 
     angular.module('app').controller('TopStoriesCtrl', TopStoriesCtrl);
 

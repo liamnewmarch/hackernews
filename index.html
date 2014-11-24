@@ -7,13 +7,13 @@
         <title>Hacker News. Hacked.</title>
         <link rel="stylesheet" href="css/main.css">
     </head>
-    <body>
+    <body ng-cloak ng-controller="TopStoriesCtrl" ng-keydown="keyHandler($event)">
         <header>
             <h1><a ng-href="/">Hacker News. Hacked.</a></h1>
         </header>
-        <main ng-cloak ng-controller="TopStoriesCtrl">
+        <main>
             <input type="seach" ng-model="quickSearch" placeholder="Filter" autofocus>
-            <div class="story" ng-repeat="story in stories | filter:quickSearch">
+            <div class="story" ng-repeat="story in stories | filter:quickSearch" ng-class="{ 'story--selected': $index == index }">
                 <span class="story__title">
                     <a ng-href="{{ story.url }}">{{ story.title }}</a>
                     <span>({{ story.url | domain }})</span>
