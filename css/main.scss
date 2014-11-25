@@ -55,20 +55,26 @@ a {
 
 .story {
     margin: 0.5em 0 1.5em 0;
-}
 
-.story__title {
-    display: block;
-    margin-bottom: 0.25em;
+    &--selected {
+        position: relative;
+        background: rgba(255, 255, 255, 0.75);
+        outline: 1px solid white;
+    }
 
-    span {
+    &__title {
+        display: block;
+        margin-bottom: 0.25em;
+
+        span {
+            font-size: 0.75em;
+            color: rgb(128, 128, 128);
+        }
+    }
+
+    &__meta {
         font-size: 0.75em;
         color: rgb(128, 128, 128);
     }
-}
 
-.story__meta {
-    font-size: 0.75em;
-    color: rgb(128, 128, 128);
 }
-

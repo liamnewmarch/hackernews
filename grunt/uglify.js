@@ -7,12 +7,11 @@ module.exports = {
         },
         files: {
             'js/app.min.js': [
-                'js/modules/app.js',
-                'js/services/url-provider.js',
-                'js/services/api-wrapper.js',
-                'js/services/top-stories.js',
-                'js/controllers/top-stories.js',
-                'js/filters/domain.js'
+                'js/modules/*.js',
+                'js/services/*.js',
+                'js/filters/*.js',
+                'js/directives/*.js',
+                'js/controllers/*.js'
             ]
         }
     }
