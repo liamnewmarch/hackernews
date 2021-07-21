@@ -1,9 +1,12 @@
-# Hacker News. Hacked.
+# Hacker News lite
 
-A re-implementation of [Hacker News][hn] using AngularJS, Firebase and the official [Hacker News API][api].
+A lightweight [Hacker News][hn] [Progressive Web App][pwa], built with [Firebase][firebase], [Web Components][wc] and the official [Hacker News API][api].
 
-Check out a live version of this repo hosted on [GitHub Pages][demo].
+Check out the [live app here][live]
 
 [hn]: http://news.ycombinator.com
+[pwa]: https://web.dev/progressive-web-apps/
+[firebase]: https://firebase.google.com
+[wc]: https://developer.mozilla.org/en-US/docs/Web/Web_Components
 [api]: https://github.com/HackerNews/API
-[demo]: https://liamnewmarch.github.io/hackernews/
+[live]: https://hnlite.web.app
