@@ -5,10 +5,24 @@
     <meta name="viewport" content="initial-scale=1">
     <meta name="color-scheme" content="dark light">
     <title>Hacker News lite</title>
-    <script defer src="/__/firebase/8.7.1/firebase-app.js"></script>
-    <script defer src="/__/firebase/8.7.1/firebase-database.js"></script>
-    <script defer src="/__/firebase/8.7.1/firebase-firestore.js"></script>
+    <link href="/index.css" rel="stylesheet">
+    <script src="/index.js" type="module"></script>
   </head>
   <body>
+    <form id="form">
+      <h1>
+        <a href="https://news.ycombinator.com"> HN </a>
+      </h1>
+      <label for="type"> Stories </label>
+      <select id="type" name="type">
+        <option value="topstories"> Top (default) </option>
+        <option value="beststories"> Best </option>
+        <option value="newstories"> New </option>
+      </select>
+      <label for="count"> Count </label>
+      <input id="count" max="50" min="5" name="count" step="5" type="number" value="20">
+      <button type="submit"> Go </button>
+    </form>
+    <output id="output"></output>
   </body>
 </html>
