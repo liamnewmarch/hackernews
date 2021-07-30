@@ -1,12 +1,14 @@
 # Hacker News lite
 
-A lightweight [Hacker News][hn] [Progressive Web App][pwa], built with [Firebase][firebase], [Web Components][wc] and the official [Hacker News API][api].
+Rough and ready app that adds some features I wanted to the [Hacker News](http://news.ycombinator.com) homepage and removes everything else. Features:
 
-Check out the [live app here][live]
+* A way of switching to ‘best’ stories.
+* Better (well, larger) responsive design.
+* Everything opens in a new tab.
+* Dark theme, if you like.
 
-[hn]: http://news.ycombinator.com
-[pwa]: https://web.dev/progressive-web-apps/
-[firebase]: https://firebase.google.com
-[wc]: https://developer.mozilla.org/en-US/docs/Web/Web_Components
-[api]: https://github.com/HackerNews/API
-[live]: https://hnlite.web.app
+This is just a way of consuming headlines really, it’s not optimised at all and comments just link off to HN.
+
+Built with the official [Hacker News API](https://github.com/HackerNews/API) on [Firebase](https://firebase.google.com) and [Lit](https://lit.dev).
+
+Check out the [app here](https://hnlite.web.app).
